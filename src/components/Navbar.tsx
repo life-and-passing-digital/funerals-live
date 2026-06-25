@@ -6,34 +6,13 @@ import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X, Phone } from "lucide-react";
 
 function LogoMark() {
-  const [imgFailed, setImgFailed] = useState(false);
-  if (!imgFailed) {
-    return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
-        src="/assets/images/logo.png"
-        alt="Funerals Live"
-        style={{ height: 48, width: "auto", objectFit: "contain" }}
-        onError={() => setImgFailed(true)}
-      />
-    );
-  }
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-      <div style={{ width: 36, height: 36, borderRadius: 8, background: "linear-gradient(135deg, #8B104E, #B01460)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <path d="M10 2C6 2 3 6 3 10s3 8 7 8 7-4 7-8-3-8-7-8z" fill="white" opacity="0.2"/>
-          <path d="M10 4C8 4 6 7 6 10s2 6 4 6 4-3 4-6-2-6-4-6z" fill="white" opacity="0.6"/>
-          <path d="M10 6c-1 0-2 2-2 4s1 4 2 4 2-2 2-4-1-4-2-4z" fill="white"/>
-        </svg>
-      </div>
-      <div>
-        <p style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: 18, color: "#1D4641", letterSpacing: "-0.5px", lineHeight: 1, margin: 0 }}>
-          Funerals<span style={{ color: "#8B104E" }}>Live</span>
-        </p>
-        <p style={{ fontFamily: "'Poppins',sans-serif", fontSize: 10, color: "#807388", lineHeight: 1, marginTop: 3 }}>A Gaia Digital Company</p>
-      </div>
-    </div>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/assets/images/FuneralsLive_logo.svg"
+      alt="Funerals Live"
+      style={{ height: 48, width: "auto", objectFit: "contain" }}
+    />
   );
 }
 
