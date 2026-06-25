@@ -58,47 +58,36 @@ export default function HomePage() {
           </div>
         </AnimatedSection>
 
-        {/* Right — iPad + decorative loops, matching Figma node 603:8628 */}
-        <AnimatedSection direction="right" className="flex-1 flex justify-center" style={{ minWidth: 300, minHeight: 540 }}>
-          <div style={{ position: "relative", width: 680, height: 540, flexShrink: 0 }}>
+        {/* Right — image with decorative loops */}
+        <AnimatedSection direction="right" className="flex-1 flex justify-center" style={{ minWidth: 300, minHeight: 480 }}>
+          <div style={{ position: "relative", width: 647, flexShrink: 0 }}>
 
-            {/* Decorative loops SVG — replicates imgLoops from Figma */}
+            {/* Decorative loops SVG */}
             <svg
               viewBox="0 0 680 680"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              style={{ position: "absolute", top: -16, left: 9, width: 680, height: 680, pointerEvents: "none" }}
+              style={{ position: "absolute", top: -40, right: -40, width: 680, height: 680, pointerEvents: "none" }}
             >
-              {/* Large outer arc — dark green */}
               <circle cx="430" cy="360" r="310" stroke="#1D4641" strokeWidth="1.5" />
-              {/* Medium arc — dark green, offset */}
               <circle cx="390" cy="330" r="250" stroke="#1D4641" strokeWidth="1.5" />
-              {/* Inner rose/pink arc */}
               <circle cx="460" cy="310" r="200" stroke="#C0BAC4" strokeWidth="1.5" />
             </svg>
 
-            {/* iPad mockup — matches Figma imgIPad, rotated to match tilt */}
-            <div
+            {/* Stream image — clean, no device frame */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/assets/images/img_live_stream.webp"
+              alt="Funeral live stream in progress"
               style={{
-                position: "absolute",
-                left: 0,
-                top: 51,
-                width: 500,
-                transform: "rotate(-8deg)",
-                transformOrigin: "center center",
-                borderRadius: 28,
-                border: "14px solid #2D1240",
-                overflow: "hidden",
-                boxShadow: "0 24px 64px rgba(0,0,0,0.28)",
+                width: "100%",
+                height: "auto",
+                display: "block",
+                borderRadius: 24,
+                boxShadow: "0 24px 64px rgba(0,0,0,0.18)",
+                position: "relative",
               }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/assets/images/img_live_stream.webp"
-                alt="Funeral live stream in progress"
-                style={{ width: "100%", height: "auto", display: "block" }}
-              />
-            </div>
+            />
           </div>
         </AnimatedSection>
       </section>
