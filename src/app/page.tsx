@@ -41,9 +41,9 @@ export default function HomePage() {
     <div style={{ background: "#F7F6F3", paddingTop: 80 }}>
 
       {/* ── HERO ────────────────────────────────────────────── */}
-      <section className="max-w-[1440px] mx-auto flex items-center gap-10 flex-wrap px-4 py-14 md:px-[80px] md:py-[96px]">
+      <section className="max-w-[1440px] mx-auto flex items-center gap-10 flex-wrap px-4 py-14 md:px-[80px] md:py-[48px]">
         {/* Left */}
-        <AnimatedSection className="flex flex-col gap-10 max-w-[593px]">
+        <AnimatedSection className="flex flex-col gap-10" style={{ width: 593, flexShrink: 0, maxWidth: "100%" }}>
           <div className="flex flex-col gap-6">
             <h1 className="display-56" style={{ color: "#1D4641" }}>
               Connecting hearts, sharing stories, and honouring memories globally.
@@ -58,28 +58,46 @@ export default function HomePage() {
           </div>
         </AnimatedSection>
 
-        {/* Right — live stream image */}
-        <AnimatedSection direction="right" className="flex-1 flex justify-end" style={{ minWidth: 300 }}>
-          <div className="relative" style={{ width: "100%", maxWidth: 647 }}>
-            {/* Decorative circles */}
-            <div className="absolute rounded-full" style={{ width: 380, height: 380, border: "1.5px solid rgba(139,16,78,0.15)", top: 60, right: 60 }} />
-            <div className="absolute rounded-full" style={{ width: 300, height: 300, border: "1.5px solid rgba(139,16,78,0.08)", top: 100, right: 100 }} />
+        {/* Right — iPad + decorative loops, matching Figma node 603:8628 */}
+        <AnimatedSection direction="right" className="flex-1 flex justify-center" style={{ minWidth: 300, minHeight: 540 }}>
+          <div style={{ position: "relative", width: 680, height: 540, flexShrink: 0 }}>
 
-            {/* Image */}
-            <div style={{ borderRadius: 24, overflow: "hidden", boxShadow: "0 24px 60px rgba(0,0,0,0.18)", position: "relative" }}>
+            {/* Decorative loops SVG — replicates imgLoops from Figma */}
+            <svg
+              viewBox="0 0 680 680"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style={{ position: "absolute", top: -16, left: 9, width: 680, height: 680, pointerEvents: "none" }}
+            >
+              {/* Large outer arc — dark green */}
+              <circle cx="430" cy="360" r="310" stroke="#1D4641" strokeWidth="1.5" />
+              {/* Medium arc — dark green, offset */}
+              <circle cx="390" cy="330" r="250" stroke="#1D4641" strokeWidth="1.5" />
+              {/* Inner rose/pink arc */}
+              <circle cx="460" cy="310" r="200" stroke="#C0BAC4" strokeWidth="1.5" />
+            </svg>
+
+            {/* iPad mockup — matches Figma imgIPad, rotated to match tilt */}
+            <div
+              style={{
+                position: "absolute",
+                left: 0,
+                top: 51,
+                width: 500,
+                transform: "rotate(-8deg)",
+                transformOrigin: "center center",
+                borderRadius: 28,
+                border: "14px solid #2D1240",
+                overflow: "hidden",
+                boxShadow: "0 24px 64px rgba(0,0,0,0.28)",
+              }}
+            >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/assets/images/img_live_stream.webp"
                 alt="Funeral live stream in progress"
                 style={{ width: "100%", height: "auto", display: "block" }}
               />
-              {/* Live badge */}
-              <div
-                className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full text-white text-xs font-semibold"
-                style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(8px)", fontFamily: "'Poppins',sans-serif" }}
-              >
-                <span className="live-dot" /> LIVE
-              </div>
             </div>
           </div>
         </AnimatedSection>
