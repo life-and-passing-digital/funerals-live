@@ -162,7 +162,7 @@ export default function Navbar() {
         boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.06)" : "none",
       }}
     >
-      <div className="max-w-[1440px] mx-auto px-[80px] py-4 flex items-center gap-12">
+      <div className="max-w-[1440px] mx-auto flex items-center gap-12" style={{ paddingLeft: 80, paddingRight: 80, paddingTop: 16, paddingBottom: 16 }}>
 
         {/* Logo — replace /assets/images/logo.png with the actual logo file */}
         <Link href="/" className="flex-shrink-0 flex items-center" style={{ textDecoration: "none" }}>
