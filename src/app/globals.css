@@ -68,6 +68,18 @@ body {
 .text-14    { font-size: 14px; font-weight: 400; line-height: 1.43; letter-spacing: -0.252px; }
 .text-12    { font-size: 12px; font-weight: 400; line-height: 1.33; letter-spacing: -0.216px; }
 
+/* ── Ripple (Material 3 state layer) ───────────────────── */
+@keyframes ripple-expand {
+  to { transform: scale(4); opacity: 0; }
+}
+.ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-expand 0.55s linear forwards;
+  pointer-events: none;
+}
+
 /* Buttons */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
@@ -77,14 +89,18 @@ body {
   font-family: 'Poppins', sans-serif;
   font-size: 18px; font-weight: 500; line-height: 1.33; letter-spacing: -0.324px;
   border: none; cursor: pointer; text-decoration: none;
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  position: relative; overflow: hidden;
+  transition: background 0.2s;
   white-space: nowrap;
 }
-.btn-primary:hover {
-  background: #6B0C3C;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(139,16,78,0.35);
+/* M3 hover state layer — white at 12% over dark surface */
+.btn-primary::before {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(255,255,255,0); transition: background 0.2s;
+  pointer-events: none; border-radius: inherit;
 }
+.btn-primary:hover::before { background: rgba(255,255,255,0.12); }
+.btn-primary .ripple-wave { background: rgba(255,255,255,0.25); }
 
 .btn-outline {
   display: inline-flex; align-items: center; gap: 8px;
@@ -95,13 +111,18 @@ body {
   font-family: 'Poppins', sans-serif;
   font-size: 18px; font-weight: 500; line-height: 1.33; letter-spacing: -0.324px;
   cursor: pointer; text-decoration: none;
-  transition: background 0.2s, transform 0.2s;
+  position: relative; overflow: hidden;
+  transition: background 0.2s;
   white-space: nowrap;
 }
-.btn-outline:hover {
-  background: #fff5f8;
-  transform: translateY(-1px);
+/* M3 hover state layer — primary colour at 8% over light surface */
+.btn-outline::before {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(139,16,78,0); transition: background 0.2s;
+  pointer-events: none; border-radius: inherit;
 }
+.btn-outline:hover::before { background: rgba(139,16,78,0.08); }
+.btn-outline .ripple-wave { background: rgba(139,16,78,0.2); }
 
 .btn-outline-sm {
   display: inline-flex; align-items: center; gap: 8px;
@@ -112,10 +133,17 @@ body {
   font-family: 'Poppins', sans-serif;
   font-size: 18px; font-weight: 500; line-height: 1.33; letter-spacing: -0.324px;
   cursor: pointer; text-decoration: none;
-  transition: all 0.2s;
+  position: relative; overflow: hidden;
+  transition: background 0.2s;
   white-space: nowrap;
 }
-.btn-outline-sm:hover { background: #fff5f8; transform: translateY(-1px); }
+.btn-outline-sm::before {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(139,16,78,0); transition: background 0.2s;
+  pointer-events: none; border-radius: inherit;
+}
+.btn-outline-sm:hover::before { background: rgba(139,16,78,0.08); }
+.btn-outline-sm .ripple-wave { background: rgba(139,16,78,0.2); }
 
 .btn-ghost-white {
   display: inline-flex; align-items: center; gap: 8px;
@@ -126,9 +154,17 @@ body {
   font-family: 'Poppins', sans-serif;
   font-size: 16px; font-weight: 500;
   cursor: pointer; text-decoration: none;
-  transition: all 0.2s;
+  position: relative; overflow: hidden;
+  transition: border-color 0.2s;
 }
-.btn-ghost-white:hover { background: rgba(255,255,255,0.1); border-color: white; }
+.btn-ghost-white::before {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(255,255,255,0); transition: background 0.2s;
+  pointer-events: none; border-radius: inherit;
+}
+.btn-ghost-white:hover::before { background: rgba(255,255,255,0.12); }
+.btn-ghost-white:hover { border-color: white; }
+.btn-ghost-white .ripple-wave { background: rgba(255,255,255,0.25); }
 
 /* Nav */
 .nav-link {

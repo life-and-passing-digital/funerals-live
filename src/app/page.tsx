@@ -41,7 +41,7 @@ export default function HomePage() {
     <div style={{ background: "#F7F6F3", paddingTop: 80 }}>
 
       {/* ── HERO ────────────────────────────────────────────── */}
-      <section className="max-w-[1440px] mx-auto px-[80px] py-[48px] flex items-center gap-10">
+      <section className="max-w-[1440px] mx-auto flex items-center gap-10 flex-wrap px-4 py-14 md:px-[80px] md:py-[96px]">
         {/* Left */}
         <AnimatedSection className="flex flex-col gap-10 max-w-[593px]">
           <div className="flex flex-col gap-6">
@@ -58,54 +58,25 @@ export default function HomePage() {
           </div>
         </AnimatedSection>
 
-        {/* Right — iPad with decorative loops */}
-        <AnimatedSection direction="right" className="flex-1 flex justify-end relative min-h-[400px]">
-          <div className="animate-float relative" style={{ width: 647, height: 500, flexShrink: 0 }}>
+        {/* Right — live stream image */}
+        <AnimatedSection direction="right" className="flex-1 flex justify-end" style={{ minWidth: 300 }}>
+          <div className="relative" style={{ width: "100%", maxWidth: 647 }}>
             {/* Decorative circles */}
-            <div
-              className="absolute rounded-full"
-              style={{
-                width: 380, height: 380,
-                border: "1.5px solid rgba(139,16,78,0.15)",
-                top: 60, right: 60,
-              }}
-            />
-            <div
-              className="absolute rounded-full"
-              style={{
-                width: 340, height: 340,
-                border: "1.5px solid rgba(139,16,78,0.1)",
-                top: 80, right: 80,
-              }}
-            />
-            <div
-              className="absolute rounded-full"
-              style={{
-                width: 300, height: 300,
-                border: "1.5px solid rgba(139,16,78,0.08)",
-                top: 100, right: 100,
-              }}
-            />
+            <div className="absolute rounded-full" style={{ width: 380, height: 380, border: "1.5px solid rgba(139,16,78,0.15)", top: 60, right: 60 }} />
+            <div className="absolute rounded-full" style={{ width: 300, height: 300, border: "1.5px solid rgba(139,16,78,0.08)", top: 100, right: 100 }} />
 
-            {/* iPad mockup */}
-            <div
-              className="absolute"
-              style={{
-                left: 0, top: 20,
-                width: "100%", height: 460,
-                borderRadius: 24,
-                overflow: "hidden",
-                boxShadow: "0 24px 60px rgba(0,0,0,0.2)",
-              }}
-            >
-              <PlaceholderImage
-                label="📺 iPad / Stream Preview Image"
-                style={{ width: "100%", height: "100%", background: "linear-gradient(135deg, #1D4641, #2d6b62)" }}
+            {/* Image */}
+            <div style={{ borderRadius: 24, overflow: "hidden", boxShadow: "0 24px 60px rgba(0,0,0,0.18)", position: "relative" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/assets/images/img_live_stream.webp"
+                alt="Funeral live stream in progress"
+                style={{ width: "100%", height: "auto", display: "block" }}
               />
-              {/* Live badge overlay */}
+              {/* Live badge */}
               <div
                 className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full text-white text-xs font-semibold"
-                style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(8px)" }}
+                style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(8px)", fontFamily: "'Poppins',sans-serif" }}
               >
                 <span className="live-dot" /> LIVE
               </div>
