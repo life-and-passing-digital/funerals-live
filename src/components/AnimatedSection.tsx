@@ -5,11 +5,12 @@ import { useEffect, useRef, useState } from "react";
 interface Props {
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
   delay?: number;
   direction?: "up" | "left" | "right" | "fade";
 }
 
-export default function AnimatedSection({ children, className = "", delay = 0, direction = "up" }: Props) {
+export default function AnimatedSection({ children, className = "", style, delay = 0, direction = "up" }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -39,6 +40,7 @@ export default function AnimatedSection({ children, className = "", delay = 0, d
       ref={ref}
       className={className}
       style={{
+        ...style,
         opacity: visible ? 1 : 0,
         transform: visible ? "none" : transforms[direction],
         transition: `opacity 0.7s ease, transform 0.7s ease`,
