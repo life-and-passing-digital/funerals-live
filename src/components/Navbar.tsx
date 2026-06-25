@@ -5,23 +5,51 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X, Phone } from "lucide-react";
 
+function LogoMark() {
+  const [imgFailed, setImgFailed] = useState(false);
+  if (!imgFailed) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src="/assets/images/logo.png"
+        alt="Funerals Live"
+        style={{ height: 48, width: "auto", objectFit: "contain" }}
+        onError={() => setImgFailed(true)}
+      />
+    );
+  }
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+      <div style={{ width: 36, height: 36, borderRadius: 8, background: "linear-gradient(135deg, #8B104E, #B01460)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2C6 2 3 6 3 10s3 8 7 8 7-4 7-8-3-8-7-8z" fill="white" opacity="0.2"/>
+          <path d="M10 4C8 4 6 7 6 10s2 6 4 6 4-3 4-6-2-6-4-6z" fill="white" opacity="0.6"/>
+          <path d="M10 6c-1 0-2 2-2 4s1 4 2 4 2-2 2-4-1-4-2-4z" fill="white"/>
+        </svg>
+      </div>
+      <div>
+        <p style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: 18, color: "#1D4641", letterSpacing: "-0.5px", lineHeight: 1, margin: 0 }}>
+          Funerals<span style={{ color: "#8B104E" }}>Live</span>
+        </p>
+        <p style={{ fontFamily: "'Poppins',sans-serif", fontSize: 10, color: "#807388", lineHeight: 1, marginTop: 3 }}>A Gaia Digital Company</p>
+      </div>
+    </div>
+  );
+}
+
 const packagesLinks = [
   { href: "/packages/live-streaming", label: "Live Streaming" },
   { href: "/packages/slideshow-tribute", label: "Slideshow Tribute" },
   { href: "/packages/memorial-video", label: "Memorial Video" },
+  { href: "/packages", label: "All Packages" },
 ];
 
 const upcomingLinks = [
-  { href: "/funerals/upcoming", label: "All Upcoming" },
-  { href: "/funerals/upcoming?state=NSW", label: "New South Wales" },
-  { href: "/funerals/upcoming?state=VIC", label: "Victoria" },
-  { href: "/funerals/upcoming?state=QLD", label: "Queensland" },
+  { href: "/funerals/upcoming", label: "All Upcoming Services" },
 ];
 
 const pastLinks = [
   { href: "/funerals/past", label: "All Past Funerals" },
-  { href: "/funerals/past?year=2025", label: "2025" },
-  { href: "/funerals/past?year=2024", label: "2024" },
 ];
 
 function Dropdown({ label, items, active }: { label: string; items: { href: string; label: string }[]; active: boolean }) {
@@ -29,24 +57,36 @@ function Dropdown({ label, items, active }: { label: string; items: { href: stri
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    function onClick(e: MouseEvent) {
+    function onClickOutside(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
     }
-    document.addEventListener("mousedown", onClick);
-    return () => document.removeEventListener("mousedown", onClick);
+    document.addEventListener("mousedown", onClickOutside);
+    return () => document.removeEventListener("mousedown", onClickOutside);
   }, []);
 
   return (
-    <div ref={ref} className="relative">
+    <div ref={ref} className="relative flex flex-col gap-[2px] items-center pt-1">
       <button
-        className="nav-link"
-        style={{ color: active ? "#8B104E" : "#8B104E", background: "none", border: "none", cursor: "pointer", fontFamily: "'Poppins',sans-serif" }}
         onClick={() => setOpen(!open)}
+        className="flex gap-2 items-center py-2"
+        style={{
+          background: "none", border: "none", cursor: "pointer",
+          fontFamily: "'Poppins', sans-serif", fontWeight: 500,
+          fontSize: 16, color: "#8B104E", letterSpacing: "-0.288px",
+          whiteSpace: "nowrap",
+        }}
       >
         {label}
-        <ChevronDown size={16} style={{ transition: "transform 0.2s", transform: open ? "rotate(180deg)" : "none" }} />
-        {active && <span className="nav-link-underline" />}
+        <ChevronDown
+          size={16}
+          style={{ color: "#8B104E", transition: "transform 0.2s", transform: open ? "rotate(180deg)" : "none" }}
+        />
       </button>
+
+      {/* Active underline */}
+      {active && (
+        <div style={{ height: 2, width: "100%", background: "#8B104E", borderRadius: 1 }} />
+      )}
 
       {open && (
         <div
@@ -54,25 +94,49 @@ function Dropdown({ label, items, active }: { label: string; items: { href: stri
           style={{
             background: "white",
             boxShadow: "0 8px 40px rgba(0,0,0,0.12)",
-            border: "1px solid #e5e7eb",
-            minWidth: 200,
-            animation: "fadeUp 0.15s ease",
+            border: "1px solid #e5e0ea",
+            minWidth: 220,
           }}
         >
           {items.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="block px-5 py-3 text-sm font-medium transition-colors"
-              style={{ color: "#463351", fontFamily: "'Poppins',sans-serif" }}
+              onClick={() => setOpen(false)}
+              className="block px-5 py-3"
+              style={{
+                fontFamily: "'Poppins', sans-serif", fontWeight: 500,
+                fontSize: 15, color: "#463351", textDecoration: "none",
+                transition: "background 0.15s, color 0.15s",
+              }}
               onMouseEnter={(e) => { e.currentTarget.style.background = "#F7F6F3"; e.currentTarget.style.color = "#8B104E"; }}
               onMouseLeave={(e) => { e.currentTarget.style.background = "white"; e.currentTarget.style.color = "#463351"; }}
-              onClick={() => setOpen(false)}
             >
               {item.label}
             </Link>
           ))}
         </div>
+      )}
+    </div>
+  );
+}
+
+function NavLink({ href, label, active }: { href: string; label: string; active: boolean }) {
+  return (
+    <div className="relative flex flex-col gap-[2px] items-center pt-1">
+      <Link
+        href={href}
+        className="py-2"
+        style={{
+          fontFamily: "'Poppins', sans-serif", fontWeight: 500,
+          fontSize: 16, color: "#8B104E", letterSpacing: "-0.288px",
+          textDecoration: "none", whiteSpace: "nowrap",
+        }}
+      >
+        {label}
+      </Link>
+      {active && (
+        <div style={{ height: 2, width: "100%", background: "#8B104E", borderRadius: 1 }} />
       )}
     </div>
   );
@@ -95,56 +159,61 @@ export default function Navbar() {
       style={{
         background: "#F7F6F3",
         borderBottom: scrolled ? "1px solid #e5e0ea" : "1px solid transparent",
-        boxShadow: scrolled ? "0 2px 16px rgba(0,0,0,0.06)" : "none",
+        boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.06)" : "none",
       }}
     >
-      <div className="max-w-[1440px] mx-auto px-[80px] py-[16px] flex items-center gap-12">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 flex-shrink-0 group">
-          <div
-            className="w-[36px] h-[36px] rounded-lg flex items-center justify-center transition-transform duration-200 group-hover:scale-105"
-            style={{ background: "linear-gradient(135deg, #8B104E, #B01460)" }}
-          >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M4 4h12v8H4z" fill="white" opacity="0.3" rx="1"/>
-              <circle cx="10" cy="8" r="3" fill="white" opacity="0.9"/>
-              <path d="M10 11l-2 4h4l-2-4z" fill="white" opacity="0.7"/>
-              <rect x="6" y="14" width="8" height="1.5" rx="0.75" fill="white" opacity="0.5"/>
-            </svg>
-          </div>
-          <div>
-            <span className="font-bold text-[18px] leading-none" style={{ color: "#1D4641", letterSpacing: "-0.5px" }}>
-              Funerals<span style={{ color: "#8B104E" }}>Live</span>
-            </span>
-            <p className="text-[10px] leading-none mt-0.5" style={{ color: "#807388" }}>A Gaia Digital Company</p>
-          </div>
+      <div className="max-w-[1440px] mx-auto px-[80px] py-4 flex items-center gap-12">
+
+        {/* Logo — replace /assets/images/logo.png with the actual logo file */}
+        <Link href="/" className="flex-shrink-0 flex items-center" style={{ textDecoration: "none" }}>
+          <LogoMark />
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-6 flex-1">
-          <Dropdown label="Packages" items={packagesLinks} active={pathname.startsWith("/packages")} />
-          <Dropdown label="Upcoming funerals" items={upcomingLinks} active={pathname.startsWith("/funerals/upcoming")} />
-          <Dropdown label="Past funerals" items={pastLinks} active={pathname.startsWith("/funerals/past")} />
-          <Link href="/blog" className="nav-link" style={{ color: pathname === "/blog" ? "#6B0C3C" : "#8B104E" }}>
-            Blog {pathname === "/blog" && <span className="nav-link-underline" />}
-          </Link>
-          <Link href="/about" className="nav-link" style={{ color: pathname === "/about" ? "#6B0C3C" : "#8B104E" }}>
-            About {pathname === "/about" && <span className="nav-link-underline" />}
-          </Link>
+        {/* Desktop nav — centred */}
+        <nav className="hidden lg:flex items-center gap-6 flex-1 justify-end">
+          <Dropdown
+            label="Packages"
+            items={packagesLinks}
+            active={pathname.startsWith("/packages")}
+          />
+          <Dropdown
+            label="Upcoming funerals"
+            items={upcomingLinks}
+            active={pathname.startsWith("/funerals/upcoming")}
+          />
+          <Dropdown
+            label="Past funerals"
+            items={pastLinks}
+            active={pathname.startsWith("/funerals/past")}
+          />
+          <NavLink href="/blog" label="Blog" active={pathname === "/blog"} />
+          <NavLink href="/about" label="About" active={pathname === "/about"} />
         </nav>
 
         {/* CTA */}
-        <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
-          <a href="tel:0411760614" className="btn-primary" style={{ fontSize: 16, padding: "9px 16px" }}>
-            Call us now
-          </a>
-        </div>
+        <a
+          href="tel:0411760614"
+          className="hidden lg:flex items-center justify-center flex-shrink-0"
+          style={{
+            background: "#8B104E", color: "white",
+            fontFamily: "'Poppins', sans-serif", fontWeight: 500,
+            fontSize: 16, letterSpacing: "-0.288px",
+            padding: "9px 16px", borderRadius: 8,
+            textDecoration: "none", whiteSpace: "nowrap",
+            transition: "background 0.2s",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "#6B0C3C")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "#8B104E")}
+        >
+          Call us now
+        </a>
 
         {/* Mobile toggle */}
         <button
           className="lg:hidden ml-auto p-2 rounded-lg"
-          style={{ color: "#8B104E" }}
+          style={{ color: "#8B104E", background: "none", border: "none", cursor: "pointer" }}
           onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle menu"
         >
           {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
@@ -152,10 +221,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div
-          className="lg:hidden border-t"
-          style={{ background: "#F7F6F3", borderColor: "#e5e0ea" }}
-        >
+        <div className="lg:hidden border-t" style={{ background: "#F7F6F3", borderColor: "#e5e0ea" }}>
           <div className="px-6 py-4 flex flex-col gap-1">
             {[
               { href: "/packages/live-streaming", label: "Live Streaming" },
@@ -171,14 +237,27 @@ export default function Navbar() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="py-3 text-base font-medium border-b"
-                style={{ color: "#8B104E", borderColor: "#e5e0ea", fontFamily: "'Poppins',sans-serif" }}
+                className="py-3 border-b"
+                style={{
+                  fontFamily: "'Poppins', sans-serif", fontWeight: 500,
+                  fontSize: 16, color: "#8B104E",
+                  borderColor: "#e5e0ea", textDecoration: "none",
+                }}
                 onClick={() => setMobileOpen(false)}
               >
                 {l.label}
               </Link>
             ))}
-            <a href="tel:0411760614" className="btn-primary mt-4 justify-center">
+            <a
+              href="tel:0411760614"
+              className="flex items-center justify-center gap-2 mt-4"
+              style={{
+                background: "#8B104E", color: "white",
+                fontFamily: "'Poppins', sans-serif", fontWeight: 500,
+                fontSize: 16, padding: "10px 16px", borderRadius: 8,
+                textDecoration: "none",
+              }}
+            >
               <Phone size={16} /> Call us now
             </a>
           </div>
