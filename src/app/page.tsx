@@ -58,38 +58,6 @@ export default function HomePage() {
           </div>
         </AnimatedSection>
 
-        {/* Right — image with decorative loops */}
-        <AnimatedSection direction="right" className="flex-1 flex justify-center" style={{ minWidth: 300, minHeight: 480 }}>
-          <div style={{ position: "relative", width: 647, flexShrink: 0 }}>
-
-            {/* Decorative loops SVG */}
-            <svg
-              viewBox="0 0 680 680"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style={{ position: "absolute", top: -40, right: -40, width: 680, height: 680, pointerEvents: "none" }}
-            >
-              <circle cx="430" cy="360" r="310" stroke="#1D4641" strokeWidth="1.5" />
-              <circle cx="390" cy="330" r="250" stroke="#1D4641" strokeWidth="1.5" />
-              <circle cx="460" cy="310" r="200" stroke="#C0BAC4" strokeWidth="1.5" />
-            </svg>
-
-            {/* Stream image — clean, no device frame */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/assets/images/img_live_stream.webp"
-              alt="Funeral live stream in progress"
-              style={{
-                width: "100%",
-                height: "auto",
-                display: "block",
-                borderRadius: 24,
-                boxShadow: "0 24px 64px rgba(0,0,0,0.18)",
-                position: "relative",
-              }}
-            />
-          </div>
-        </AnimatedSection>
       </section>
 
       {/* ── WHAT IS FUNERAL LIVE STREAMING ─────────────────── */}
