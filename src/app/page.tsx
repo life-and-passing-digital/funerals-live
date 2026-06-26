@@ -41,24 +41,7 @@ export default function HomePage() {
     <div style={{ background: "#F7F6F3", paddingTop: 80 }}>
 
       {/* ── HERO ────────────────────────────────────────────── */}
-      <section className="max-w-[1440px] mx-auto flex items-center gap-10 flex-wrap py-14 md:py-[48px]" style={{ paddingLeft: 80, paddingRight: 80 }}>
-        {/* Left */}
-        <AnimatedSection className="flex flex-col gap-10" style={{ width: 593, flexShrink: 0, maxWidth: "100%" }}>
-          <div className="flex flex-col gap-6">
-            <h1 className="display-56" style={{ color: "#1D4641" }}>
-              Connecting hearts, sharing stories, and honouring memories globally.
-            </h1>
-            <p className="text-18" style={{ color: "#463351" }}>
-              In times of loss and sorrow, we believe that every farewell matters. At Funerals Live Streaming, we are committed to making sure that distance does not keep anyone from being part of the final tribute to a loved one.
-            </p>
-          </div>
-          <div className="flex gap-2 items-end flex-wrap">
-            <Link href="/contact" className="btn-primary">Book now</Link>
-            <Link href="/packages/live-streaming" className="btn-outline">View packages</Link>
-          </div>
-        </AnimatedSection>
-
-      </section>
+      {/* TODO: rebuild hero from scratch */}
 
       {/* ── WHAT IS FUNERAL LIVE STREAMING ─────────────────── */}
       <section
