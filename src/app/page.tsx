@@ -5,17 +5,6 @@ import Image from "next/image";
 import { Check } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 
-// Figma asset URLs (replace with /assets/... paths once images are added)
-const IPAD_IMG = "/assets/images/ipad-stream.png";
-const CHAPEL_IMG = "/assets/images/chapel.jpg";
-const EULOGY_ILLUS = "/assets/illustrations/eulogy-writer.png";
-const PASSING_ILLUS = "/assets/illustrations/passing-moments.png";
-const WHY_1 = "/assets/illustrations/why-1.png";
-const WHY_2 = "/assets/illustrations/why-2.png";
-const WHY_3 = "/assets/illustrations/why-3.png";
-const PKG_STREAM = "/assets/images/package-streaming.jpg";
-const PKG_SLIDE = "/assets/images/package-slideshow.jpg";
-const PKG_MEMORIAL = "/assets/images/package-memorial.jpg";
 
 function CheckItem({ text }: { text: string }) {
   return (
@@ -41,23 +30,93 @@ export default function HomePage() {
     <div style={{ background: "#F7F6F3", paddingTop: 80 }}>
 
       {/* ── HERO ────────────────────────────────────────────── */}
-      <section className="max-w-[1440px] mx-auto flex items-center gap-10 flex-wrap px-4 py-14 md:px-[80px] md:py-[48px]">
-        {/* Left */}
-        <AnimatedSection className="flex flex-col gap-10" style={{ width: 593, flexShrink: 0, maxWidth: "100%" }}>
-          <div className="flex flex-col gap-6">
-            <h1 className="display-56" style={{ color: "#1D4641" }}>
-              Connecting hearts, sharing stories, and honouring memories globally.
-            </h1>
-            <p className="text-18" style={{ color: "#463351" }}>
-              In times of loss and sorrow, we believe that every farewell matters. At Funerals Live Streaming, we are committed to making sure that distance does not keep anyone from being part of the final tribute to a loved one.
-            </p>
+      <section
+        style={{
+          paddingLeft: 80, paddingRight: 80,
+          paddingTop: 48, paddingBottom: 48,
+        }}
+      >
+        <div
+          className="mx-auto flex gap-[40px] items-center justify-center"
+          style={{ maxWidth: 1280 }}
+        >
+          {/* Left — content */}
+          <div className="flex flex-col gap-[40px] items-start shrink-0" style={{ width: 593 }}>
+            <div className="flex flex-col gap-[24px] items-start w-full">
+              <h1
+                style={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontWeight: 600,
+                  fontSize: 56,
+                  lineHeight: "72px",
+                  letterSpacing: "-1.008px",
+                  color: "#1D4641",
+                }}
+              >
+                Connecting hearts, sharing stories, and honouring memories globally.
+              </h1>
+              <p
+                style={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontWeight: 400,
+                  fontSize: 18,
+                  lineHeight: "24px",
+                  letterSpacing: "-0.324px",
+                  color: "#463351",
+                }}
+              >
+                In times of loss and sorrow, we believe that every farewell matters. At Funerals Live Streaming, we are committed to making sure that distance does not keep anyone from being part of the final tribute to a loved one.
+              </p>
+            </div>
+            <div className="flex gap-[8px] items-center">
+              <a href="/contact" className="btn-primary">Book now</a>
+              <a href="/packages" className="btn-outline">View packages</a>
+            </div>
           </div>
-          <div className="flex gap-2 items-end flex-wrap">
-            <Link href="/contact" className="btn-primary">Book now</Link>
-            <Link href="/packages/live-streaming" className="btn-outline">View packages</Link>
-          </div>
-        </AnimatedSection>
 
+          {/* Right — loops + iPad image composite */}
+          <div
+            className="relative shrink-0"
+            style={{ width: 680, height: 680, marginRight: -80 }}
+          >
+            {/* Circle arcs decoration */}
+            <div
+              style={{
+                position: "absolute",
+                top: 0, left: 0,
+                width: 680, height: 680,
+                zIndex: 1,
+              }}
+            >
+              <svg width="680" height="680" viewBox="0 0 680 680" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="340" cy="340" r="200" stroke="#1D4641" strokeWidth="1.5" fill="none" opacity="0.5" />
+                <circle cx="340" cy="340" r="260" stroke="#1D4641" strokeWidth="1.5" fill="none" opacity="0.35" />
+                <circle cx="340" cy="340" r="320" stroke="#8B104E" strokeWidth="1.5" fill="none" opacity="0.4" />
+              </svg>
+            </div>
+            {/* iPad / live stream image */}
+            <div
+              style={{
+                position: "absolute",
+                top: 51,
+                left: -197.5 + 9,
+                width: 640,
+                height: 460,
+                zIndex: 2,
+                borderRadius: 24,
+                overflow: "hidden",
+                boxShadow: "0 32px 80px rgba(29,70,65,0.18), 0 8px 24px rgba(0,0,0,0.12)",
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/assets/images/img_live_stream.webp"
+                alt="Funeral live streaming"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* ── WHAT IS FUNERAL LIVE STREAMING ─────────────────── */}
@@ -70,9 +129,11 @@ export default function HomePage() {
             className="card-rounded overflow-hidden"
             style={{ width: 560, height: 640 }}
           >
-            <PlaceholderImage
-              label="📸 Chapel / Venue Interior Photo"
-              style={{ width: "100%", height: "100%", background: "linear-gradient(160deg, #c8d8c4 0%, #a8c4a0 100%)" }}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/assets/images/img_what_is_funerals_live.webp"
+              alt="Chapel interior"
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
           </div>
         </AnimatedSection>
@@ -101,11 +162,9 @@ export default function HomePage() {
           >
             <div className="flex flex-col gap-2">
               <p className="display-20" style={{ color: "#1D4641" }}>EulogyWriter</p>
-              <div style={{ width: 280, height: 280 }}>
-                <PlaceholderImage
-                  label="🖊️ Eulogy Writer Illustration"
-                  style={{ width: 280, height: 280, borderRadius: 20, background: "rgba(29,70,65,0.08)" }}
-                />
+              <div style={{ width: 280, height: 280, borderRadius: 20, overflow: "hidden" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/assets/illustrations/eulogy_writer.webp" alt="Eulogy Writer" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               </div>
             </div>
             <div className="flex flex-col gap-6">
@@ -134,11 +193,9 @@ export default function HomePage() {
           >
             <div className="flex flex-col gap-2">
               <p className="display-20" style={{ color: "#8B104E" }}>PassingMoments</p>
-              <div style={{ width: 280, height: 280 }}>
-                <PlaceholderImage
-                  label="🎞️ Passing Moments Illustration"
-                  style={{ width: 280, height: 280, borderRadius: 20, background: "rgba(139,16,78,0.06)" }}
-                />
+              <div style={{ width: 280, height: 280, borderRadius: 20, overflow: "hidden" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/assets/illustrations/slidershow_tribute.webp" alt="Passing Moments" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               </div>
             </div>
             <div className="flex flex-col gap-6">
@@ -170,19 +227,17 @@ export default function HomePage() {
 
         <div className="flex gap-6 w-full max-w-[1280px]">
           {[
-            { img: WHY_1, text: "Available 24/7 in the Sydney Metro and Greater Sydney areas" },
-            { img: WHY_2, text: "Get value for money and high-quality service with our streaming and memorial packages" },
-            { img: WHY_3, text: "All your loved one's funeral recordings, saved and available online." },
+            { img: "/assets/illustrations/availability.webp", text: "Available 24/7 in the Sydney Metro and Greater Sydney areas" },
+            { img: "/assets/illustrations/get_value.webp", text: "Get value for money and high-quality service with our streaming and memorial packages" },
+            { img: "/assets/illustrations/recordings.webp", text: "All your loved one's funeral recordings, saved and available online." },
           ].map((item, i) => (
             <AnimatedSection key={i} delay={i * 80} className="flex-1 flex flex-col gap-6 items-center">
               <div
                 className="w-full flex items-center justify-center overflow-hidden"
                 style={{ height: 240 }}
               >
-                <PlaceholderImage
-                  label={`✨ Why Us Illustration ${i + 1}`}
-                  style={{ width: 224, height: 224, borderRadius: 16, background: "rgba(29,70,65,0.06)" }}
-                />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={item.img} alt="" style={{ width: 224, height: 224, objectFit: "contain", borderRadius: 16 }} />
               </div>
               <p
                 className="text-center text-18"
@@ -232,22 +287,19 @@ export default function HomePage() {
         <div className="flex gap-7 w-full justify-center flex-wrap">
           {[
             {
-              img: PKG_STREAM,
-              imgLabel: "📹 Live Streaming Package Photo",
+              img: "/assets/images/img_streaming.webp",
               title: "Live Streaming",
               desc: "We work with you to memorialise the person and their life in a way that is fitting and appropriate for you, your family, friends and loved ones. We offer packages starting from $900 AUD.",
               href: "/packages/live-streaming",
             },
             {
-              img: PKG_SLIDE,
-              imgLabel: "🖼️ Slideshow Tribute Package Photo",
+              img: "/assets/images/img_slideshow_tribute_package.webp",
               title: "Slideshow Tribute",
               desc: "A beautiful and affordable way to celebrate your loved one's life. Designed for funerals, memorials, or family gatherings, this package transforms your treasured photos into a touching visual tribute.",
               href: "/packages/slideshow-tribute",
             },
             {
-              img: PKG_MEMORIAL,
-              imgLabel: "🎬 Memorial Video Package Photo",
+              img: "/assets/images/img_memorial_video_package.webp",
               title: "Memorial Video",
               desc: "A heartfelt and personalised way to honour and celebrate your loved one's life. We carefully craft a custom video using your chosen photos, video clips, music, and messages to tell their unique story.",
               href: "/packages/memorial-video",
@@ -255,17 +307,8 @@ export default function HomePage() {
           ].map((pkg, i) => (
             <AnimatedSection key={pkg.title} delay={i * 80} className="flex flex-col gap-6" style={{ width: 408 }}>
               <div className="card-rounded-xl overflow-hidden" style={{ width: 408, height: 360, flexShrink: 0 }}>
-                <PlaceholderImage
-                  label={pkg.imgLabel}
-                  style={{
-                    width: "100%", height: "100%",
-                    background: i === 0
-                      ? "linear-gradient(135deg, #1D4641, #2d6b62)"
-                      : i === 1
-                      ? "linear-gradient(135deg, #4D1C34, #8B104E)"
-                      : "linear-gradient(135deg, #463351, #807388)",
-                  }}
-                />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={pkg.img} alt={pkg.title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               </div>
               <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-4">
