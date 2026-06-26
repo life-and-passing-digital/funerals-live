@@ -41,7 +41,7 @@ export default function HomePage() {
     <div style={{ background: "#F7F6F3", paddingTop: 80 }}>
 
       {/* ── HERO ────────────────────────────────────────────── */}
-      <section className="max-w-[1440px] mx-auto flex items-center gap-10 flex-wrap px-4 py-14 md:px-[80px] md:py-[48px]">
+      <section className="max-w-[1440px] mx-auto flex items-center gap-10 flex-wrap py-14 md:py-[48px]" style={{ paddingLeft: 80, paddingRight: 80 }}>
         {/* Left */}
         <AnimatedSection className="flex flex-col gap-10" style={{ width: 593, flexShrink: 0, maxWidth: "100%" }}>
           <div className="flex flex-col gap-6">
