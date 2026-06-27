@@ -74,47 +74,20 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Right — loops + iPad image composite */}
+          {/* Right — iPad / live stream composite.
+              The asset is a transparent PNG that already includes the tablet
+              and its decorative arcs, so it's rendered as-is (no card framing,
+              no extra circles, contain to avoid cropping). */}
           <div
             className="relative shrink-0"
             style={{ width: 680, height: 680, marginRight: -80 }}
           >
-            {/* Circle arcs decoration */}
-            <div
-              style={{
-                position: "absolute",
-                top: 0, left: 0,
-                width: 680, height: 680,
-                zIndex: 1,
-              }}
-            >
-              <svg width="680" height="680" viewBox="0 0 680 680" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="340" cy="340" r="200" stroke="#1D4641" strokeWidth="1.5" fill="none" opacity="0.5" />
-                <circle cx="340" cy="340" r="260" stroke="#1D4641" strokeWidth="1.5" fill="none" opacity="0.35" />
-                <circle cx="340" cy="340" r="320" stroke="#8B104E" strokeWidth="1.5" fill="none" opacity="0.4" />
-              </svg>
-            </div>
-            {/* iPad / live stream image */}
-            <div
-              style={{
-                position: "absolute",
-                top: 51,
-                left: -197.5 + 9,
-                width: 640,
-                height: 460,
-                zIndex: 2,
-                borderRadius: 24,
-                overflow: "hidden",
-                boxShadow: "0 32px 80px rgba(29,70,65,0.18), 0 8px 24px rgba(0,0,0,0.12)",
-              }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/assets/images/img_live_stream.webp"
-                alt="Funeral live streaming"
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-              />
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/assets/images/img_live_stream.webp"
+              alt="Funeral live streaming on a tablet"
+              style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
+            />
           </div>
         </div>
       </section>
