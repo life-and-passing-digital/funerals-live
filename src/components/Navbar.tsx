@@ -11,7 +11,7 @@ function LogoMark() {
     <img
       src="/assets/images/FuneralsLive_logo.svg"
       alt="Funerals Live"
-      style={{ height: 48, width: "auto", objectFit: "contain" }}
+      style={{ height: 32, width: "auto", objectFit: "contain" }}
     />
   );
 }
