@@ -10,8 +10,10 @@ function LogoMark() {
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src="/assets/images/FuneralsLive_logo.svg"
-      alt="Funerals Live"
-      style={{ height: 32, width: "auto", objectFit: "contain" }}
+      alt="Funerals Live — by Gaia"
+      width={780}
+      height={122}
+      className="site-logo"
     />
   );
 }
@@ -141,10 +143,10 @@ export default function Navbar() {
         boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.06)" : "none",
       }}
     >
-      <div className="max-w-[1440px] mx-auto flex items-center gap-12" style={{ paddingLeft: 80, paddingRight: 80, paddingTop: 16, paddingBottom: 16 }}>
+      <div className="nav-container max-w-[1440px] mx-auto flex items-center gap-6 lg:gap-12">
 
-        {/* Logo — replace /assets/images/logo.png with the actual logo file */}
-        <Link href="/" className="flex-shrink-0 flex items-center" style={{ textDecoration: "none" }}>
+        {/* Logo */}
+        <Link href="/" className="flex-shrink-0 flex items-center" style={{ textDecoration: "none" }} aria-label="Funerals Live — home">
           <LogoMark />
         </Link>
 
@@ -189,7 +191,7 @@ export default function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="lg:hidden ml-auto p-2 rounded-lg"
+          className="nav-toggle lg:hidden rounded-lg"
           style={{ color: "#8B104E", background: "none", border: "none", cursor: "pointer" }}
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
@@ -201,7 +203,7 @@ export default function Navbar() {
       {/* Mobile menu */}
       {mobileOpen && (
         <div className="lg:hidden border-t" style={{ background: "#F7F6F3", borderColor: "#e5e0ea" }}>
-          <div className="px-6 py-4 flex flex-col gap-1">
+          <div className="nav-mobile-menu flex flex-col gap-1">
             {[
               { href: "/packages/live-streaming", label: "Live Streaming" },
               { href: "/packages/slideshow-tribute", label: "Slideshow Tribute" },
