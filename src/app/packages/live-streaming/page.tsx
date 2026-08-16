@@ -29,8 +29,13 @@ export default function LiveStreamingPage() {
   return (
     <div style={{ background: "#F7F6F3", paddingTop: 80 }}>
       {/* Hero */}
-      <section className="max-w-[1440px] mx-auto px-[80px] py-[80px]">
-        <AnimatedSection className="max-w-[720px]">
+      {/* Padding is inline because the unlayered `*` reset in globals.css beats
+          Tailwind's layered padding utilities. */}
+      <section
+        className="max-w-[1440px] flex gap-16 items-center flex-wrap"
+        style={{ margin: "0 auto", padding: "80px" }}
+      >
+        <AnimatedSection className="flex-1 min-w-[300px] max-w-[720px]">
           <p className="text-14 font-semibold mb-4" style={{ color: "#8B104E", letterSpacing: "2px", textTransform: "uppercase" }}>
             Live Streaming
           </p>
@@ -46,6 +51,19 @@ export default function LiveStreamingPage() {
               <Phone size={16} /> 0411 760 614
             </a>
           </div>
+        </AnimatedSection>
+
+        {/* The asset is a transparent composite that already includes the tablet
+            and its decorative arcs, so it renders as-is — contain, no framing. */}
+        <AnimatedSection direction="right" className="flex-1 min-w-[320px]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/assets/images/img_live_stream.webp"
+            alt="A funeral service being streamed live on a tablet"
+            width={1294}
+            height={1344}
+            style={{ width: "100%", height: "auto", maxWidth: 560, objectFit: "contain", display: "block", marginLeft: "auto" }}
+          />
         </AnimatedSection>
       </section>
 
